@@ -4,5 +4,5 @@ WallJumpBlock: 89
 
 
 # WallWalk Block: Block used to wall walk
-WallWalkBlock: 1
+WallWalkBlock: 90
 ...

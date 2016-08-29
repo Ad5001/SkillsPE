@@ -11,10 +11,9 @@ use Ad5001\Skills\Main;
 class Dummy4 {
 
 
-   public function __construct(Main $main) {
-        $this->main = $main;
-        $this->server = $main->getServer()
-    }
+   public function __construct() {
+       
+   }
 
 
 }

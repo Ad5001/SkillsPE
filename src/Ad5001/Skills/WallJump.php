@@ -11,15 +11,19 @@ use Ad5001\Skills\Main;
 class WallJump extends Skill {
 
 
+    const name = "WallJump";
+
+
    public function __construct() {
        parent::__construct($this, true, 5);
+       $this->getLogger()->info("Enabled !");
    }
-
+ 
 
    public function onTaskRun($tick) {
        $wb =  (\pocketmine\item\Item::fromString($this->getConfig()->get("WallJumpBlock")));
        foreach($this->getServer()->getOnlinePlayers() as $player) {
-            if($player->getTargetBlock()->getId() == $wb->getId() and  $player->getTargetBlock()->getDamage()  == $wb->getDamage() and $player->distance($player->getTargetBlock()) == 1) {
+            if($player->getTargetBlock(1)->getId() == $wb->getId() and  $player->getTargetBlock(1)->getDamage()  == $wb->getDamage()) {
                 $this->wallJump($player);
             }
        }
@@ -27,8 +31,8 @@ class WallJump extends Skill {
 
 
    protected function wallJump($player) {
-       $x = $player->getTargetBlock()->x;
-       $z = $player->getTargetBlock()->z;
+       $x = $player->getTargetBlock(1)->x;
+       $z = $player->getTargetBlock(1)->z;
        if($x < $player->x) { // To set it to one in the direction
               $x += $player->x;
        }
@@ -66,11 +70,9 @@ class WallJump extends Skill {
 		$motion->y += $base;
 		$motion->z += $z * $f;
 
-		if($motion->y > $base){
-			$motion->y = $base;
-		}
-
         $player->setMotion($motion);
+
+        $this->getLogger()->info($motion->x . "/" . $motion->y . "/" . $motion->z);
    }
 
 

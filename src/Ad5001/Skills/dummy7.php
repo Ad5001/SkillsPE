@@ -8,7 +8,7 @@ use Ad5001\Skills\Main;
 
 
 
-class Dummy7 {
+class Dummy4 {
 
 
    public function __construct(Main $main) {
